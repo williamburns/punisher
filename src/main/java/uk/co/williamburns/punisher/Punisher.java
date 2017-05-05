@@ -1,5 +1,16 @@
 package uk.co.williamburns.punisher;
 
-public class Punisher
+import org.bukkit.plugin.java.JavaPlugin;
+
+/**
+ * The plugin bootstrap class for Punisher.
+ */
+public class Punisher extends JavaPlugin
 {
+
+	@Override
+	public void onEnable()
+	{
+	}
+
 }
