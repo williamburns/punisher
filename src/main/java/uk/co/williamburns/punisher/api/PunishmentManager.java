@@ -68,4 +68,12 @@ public interface PunishmentManager
 	 */
 	ListenableFuture<Boolean> savePunishment(Punishment punishment);
 
+	/**
+	 * Retrieves a punishment type by id.
+	 *
+	 * @param id The id string of the punishment type.
+	 * @return The punishment type, if any. <code>null</code> if else.
+	 */
+	PunishmentType getPunishmentType(String id);
+
 }

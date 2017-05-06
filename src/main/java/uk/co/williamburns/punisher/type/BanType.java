@@ -17,6 +17,11 @@ import uk.co.williamburns.punisher.util.NameFetcher;
  */
 public class BanType implements PunishmentType
 {
+	@Override
+	public String getId()
+	{
+		return "BAN";
+	}
 
 	@Override
 	public void onPunish(Punishment punishment)
@@ -73,5 +78,4 @@ public class BanType implements PunishmentType
 		// chat is not affected by bans
 		return true;
 	}
-
 }

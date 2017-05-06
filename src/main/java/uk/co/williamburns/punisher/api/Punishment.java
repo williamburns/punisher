@@ -9,8 +9,8 @@ public interface Punishment
 {
 
 	/**
-	 * @return The unique id number of the punishment. <code>-1L</code> if the id is not set yet,
-	 *         for example if the punishment is new and hasn't had an id generated in the database.
+	 * @return The unique id number of the punishment. <code>-1</code> if the id is not set yet, for
+	 *         example if the punishment is new and hasn't had an id generated in the database.
 	 */
 	int getId();
 
@@ -59,5 +59,19 @@ public interface Punishment
 	 * @return Whether or not this punishment is still active (not expired and not removed).
 	 */
 	boolean isActive();
+
+	/**
+	 * Sets the id of this punishment.
+	 *
+	 * @param id The id of this punishment.
+	 */
+	void setId(int id);
+
+	/**
+	 * Sets whether this punishment is removed.
+	 *
+	 * @param removed Whether this punishment is removed or not.
+	 */
+	void setRemoved(boolean removed);
 
 }

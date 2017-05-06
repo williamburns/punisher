@@ -7,6 +7,11 @@ public interface PunishmentType
 {
 
 	/**
+	 * @return A unique identifier for this punishment type, which is stored in the database.
+	 */
+	String getId();
+
+	/**
 	 * Called when a staff member punishes a player with this punishment type.
 	 *
 	 * @param punishment The punishment that has this punishment type instance.
