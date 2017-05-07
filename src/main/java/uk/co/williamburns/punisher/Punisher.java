@@ -6,6 +6,7 @@ import uk.co.williamburns.punisher.api.PunishmentManager;
 import uk.co.williamburns.punisher.base.PlayerPunishmentManager;
 import uk.co.williamburns.punisher.cmd.BanCommand;
 import uk.co.williamburns.punisher.cmd.KickCommand;
+import uk.co.williamburns.punisher.cmd.MuteCommand;
 
 /**
  * The plugin bootstrap class for Punisher.
@@ -25,6 +26,7 @@ public class Punisher extends JavaPlugin
 		// commands
 		getCommand("kick").setExecutor(new KickCommand(manager));
 		getCommand("ban").setExecutor(new BanCommand(manager));
+		getCommand("ban").setExecutor(new MuteCommand(manager));
 	}
 
 }

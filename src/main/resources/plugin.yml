@@ -5,3 +5,4 @@ main: uk.co.williamburns.punisher.Punisher
 commands:
     kick:
     ban:
+    mute:
