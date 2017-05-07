@@ -19,6 +19,8 @@ import uk.co.williamburns.punisher.api.PunishmentManager;
 import uk.co.williamburns.punisher.api.PunishmentType;
 import uk.co.williamburns.punisher.data.PunishmentDatabase;
 import uk.co.williamburns.punisher.type.BanType;
+import uk.co.williamburns.punisher.type.KickType;
+import uk.co.williamburns.punisher.type.MuteType;
 import uk.co.williamburns.punisher.util.ReadWriteLockMap;
 
 /**
@@ -46,6 +48,8 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 
 		this.types = new ArrayList<>();
 		this.types.add(new BanType());
+		this.types.add(new KickType());
+		this.types.add(new MuteType());
 
 		this.punishments = new ReadWriteLockMap<>();
 
