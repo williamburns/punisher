@@ -6,3 +6,4 @@ commands:
     kick:
     ban:
     mute:
+    phistory:
