@@ -26,4 +26,15 @@ public class MessageUtil
 		return PREFIX + " " + ChatColor.GRAY + content;
 	}
 
+	/**
+	 * Formats an error string to the standardised message style.
+	 *
+	 * @param content The content of the error message.
+	 * @return A formatted/stylised error message as a string.
+	 */
+	public static final String error(String content)
+	{
+		return PREFIX + " " + ChatColor.RED + content;
+	}
+
 }

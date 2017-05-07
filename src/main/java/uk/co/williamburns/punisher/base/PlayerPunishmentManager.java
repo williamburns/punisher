@@ -68,7 +68,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 				Set<Punishment> puns = fut.get();
 
 				// for each punishment, call the join event and disallow login if necessary
-				puns.forEach(p ->
+				puns.stream().filter(Punishment::isActive).forEach(p ->
 				{
 					String r = p.getType().onJoin(p);
 					if (r != null)
@@ -92,11 +92,12 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 			return;
 		}
 
-		punishments.read(event.getPlayer().getUniqueId()).forEach(p ->
-		{
-			// cancel the chat if punishment type chat even returns false
-			event.setCancelled(!p.getType().onChat(p));
-		});
+		punishments.read(event.getPlayer().getUniqueId()).stream().filter(Punishment::isActive)
+				.forEach(p ->
+				{
+					// cancel the chat if punishment type chat even returns false
+					event.setCancelled(!p.getType().onChat(p));
+				});
 	}
 
 	@Override

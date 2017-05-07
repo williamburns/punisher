@@ -36,6 +36,7 @@ public class PunishmentDatabase
 	/**
 	 * Class constructor.
 	 *
+	 * @param manager The punishment manager instance.
 	 * @param plugin The Punisher plugin instance.
 	 */
 	public PunishmentDatabase(PunishmentManager manager, Punisher plugin)

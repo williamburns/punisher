@@ -53,6 +53,26 @@ public class PlayerPunishment implements Punishment
 		this.removed = removed;
 	}
 
+	/**
+	 * Class constructor.
+	 * <p>
+	 * Use when issuing new punishments that lack auto-generated ids.
+	 *
+	 * @param type The type of punishment.
+	 * @param uuid The UUID of the target player.
+	 * @param punishedName The name of the target player at time of punishment.
+	 * @param staffUuid The UUID of the staff member.
+	 * @param reason The reason for this punishment.
+	 * @param timePunished The time this punishment was made.
+	 * @param duration The duration of this punishment. <code>-1L</code> if permanent.
+	 * @param removed Whether or not this punishment has been removed.
+	 */
+	public PlayerPunishment(PunishmentType type, UUID uuid, String punishedName, UUID staffUuid,
+							String reason, long timePunished, long duration, boolean removed)
+	{
+		this(-1, type, uuid, punishedName, staffUuid, reason, timePunished, duration, removed);
+	}
+
 	@Override
 	public int getId()
 	{
@@ -110,7 +130,7 @@ public class PlayerPunishment implements Punishment
 	@Override
 	public boolean isActive()
 	{
-		return !isRemoved() && System.currentTimeMillis() < (getTimePunished() + getDuration());
+		return !isRemoved() && (getDuration() == -1L || System.currentTimeMillis() < (getTimePunished() + getDuration()));
 	}
 
 	/**
