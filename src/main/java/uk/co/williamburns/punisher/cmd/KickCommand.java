@@ -40,6 +40,11 @@ public class KickCommand implements CommandExecutor
 
 		Player staff = (Player) sender;
 
+		if (!staff.hasPermission("punisher.command.kick"))
+		{
+			sender.sendMessage(MessageUtil.error("You do not have permission to use this command."));
+		}
+
 		if (args.length < 2)
 		{
 			staff.sendMessage(MessageUtil.error(

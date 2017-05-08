@@ -36,6 +36,11 @@ public class PunishmentRemoveCommand implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
+		if (!sender.hasPermission("punisher.command.remove"))
+		{
+			sender.sendMessage(MessageUtil.error("You do not have permission to use this command."));
+		}
+
 		if (args.length != 1)
 		{
 			sender.sendMessage(MessageUtil.format(

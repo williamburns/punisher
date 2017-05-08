@@ -42,6 +42,11 @@ public class PunishmentHistoryCommand implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
+		if (!sender.hasPermission("punisher.command.history"))
+		{
+			sender.sendMessage(MessageUtil.error("You do not have permission to use this command."));
+		}
+
 		if (args.length != 1)
 		{
 			sender.sendMessage(MessageUtil.error(

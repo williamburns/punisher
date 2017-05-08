@@ -45,6 +45,11 @@ public class MuteCommand implements CommandExecutor
 
 		Player staff = (Player) sender;
 
+		if (!staff.hasPermission("punisher.command.mute"))
+		{
+			sender.sendMessage(MessageUtil.error("You do not have permission to use this command."));
+		}
+
 		if (args.length < 3)
 		{
 			staff.sendMessage(MessageUtil.error(
