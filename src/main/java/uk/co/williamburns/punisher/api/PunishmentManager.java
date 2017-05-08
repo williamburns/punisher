@@ -76,4 +76,12 @@ public interface PunishmentManager
 	 */
 	PunishmentType getPunishmentType(String id);
 
+	/**
+	 * Retrieves a locally cached punishment by id.
+	 *
+	 * @param id The id of the punishment.
+	 * @return The punishment with the supplied id, or <code>null</code> if none.
+	 */
+	Punishment getPunishment(int id);
+
 }

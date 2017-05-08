@@ -62,6 +62,9 @@ public interface Punishment
 
 	/**
 	 * Sets the id of this punishment.
+	 * <p>
+	 * This should only be used to assign an auto-generated id
+	 * from the database.
 	 *
 	 * @param id The id of this punishment.
 	 */
@@ -69,6 +72,8 @@ public interface Punishment
 
 	/**
 	 * Sets whether this punishment is removed.
+	 * <p>
+	 * This punishment must be updated in the database for the change to be saved.
 	 *
 	 * @param removed Whether this punishment is removed or not.
 	 */

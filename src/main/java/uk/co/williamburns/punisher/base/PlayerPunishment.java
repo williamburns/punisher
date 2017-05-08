@@ -133,24 +133,13 @@ public class PlayerPunishment implements Punishment
 		return !isRemoved() && (getDuration() == -1L || System.currentTimeMillis() < (getTimePunished() + getDuration()));
 	}
 
-	/**
-	 * Sets the id of this punishment. This should only be used to assign an auto-generated id
-	 * from the database.
-	 *
-	 * @param id The id of this punishment.
-	 */
+	@Override
 	public void setId(int id)
 	{
 		this.id = id;
 	}
 
-	/**
-	 * Sets whether or not this punishment has been removed.
-	 * <p>
-	 * This punishment must be updated in the database for the change to be saved.
-	 *
-	 * @param removed Whether or not this punishment has been removed.
-	 */
+	@Override
 	public void setRemoved(boolean removed)
 	{
 		this.removed = removed;

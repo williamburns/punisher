@@ -139,6 +139,10 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 		{
 			// save in database
 			fut.set(database.savePunishment(punishment));
+
+			// call punishment received event
+			plugin.getServer().getScheduler().runTask(plugin, () ->
+					punishment.getType().onPunish(punishment));
 		});
 
 		return fut;
@@ -148,5 +152,28 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 	public PunishmentType getPunishmentType(String id)
 	{
 		return types.stream().filter(t -> t.getId().equals(id)).findAny().orElse(null);
+	}
+
+	@Override
+	public Punishment getPunishment(int id)
+	{
+		if (id < 0)
+		{
+			// ignore non-auto-generated ids
+			return null;
+		}
+
+		for (Set<Punishment> s : punishments.readAll().values())
+		{
+			for (Punishment p : s)
+			{
+				if (p.getId() == id)
+				{
+					return p;
+				}
+			}
+		}
+
+		return null;
 	}
 }
