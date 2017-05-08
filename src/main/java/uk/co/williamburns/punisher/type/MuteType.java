@@ -59,7 +59,7 @@ public class MuteType implements PunishmentType
 	@Override
 	public String onJoin(Punishment punishment)
 	{
-		// joins are not affected by kicks
+		// joins are not affected by mutes
 		return null;
 	}
 
