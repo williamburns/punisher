@@ -1,0 +1,17 @@
+# ==================================================================================================
+# [Punisher Configuration]
+#
+# This configuration file contains database settings. Punisher requires a MySQL database so that
+# it has a place to store punishments.
+#
+# Due to the nature of using a database, punishments are saved regardless as to whether the
+# server goes down.
+# ==================================================================================================
+
+database:
+
+    host: localhost
+    port: 3306
+    database: punisher
+    username: punisher-user
+    password: password

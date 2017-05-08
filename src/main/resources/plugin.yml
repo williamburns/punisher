@@ -1,0 +1,10 @@
+name: punisher
+version: 0.0.1
+author: WilliamTiger
+main: uk.co.williamburns.punisher.Punisher
+commands:
+    kick:
+    ban:
+    mute:
+    phistory:
+    premove:
