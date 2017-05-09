@@ -1,6 +1,7 @@
 package uk.co.williamburns.punisher.base;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -163,17 +164,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 			return null;
 		}
 
-		for (Set<Punishment> s : punishments.readAll().values())
-		{
-			for (Punishment p : s)
-			{
-				if (p.getId() == id)
-				{
-					return p;
-				}
-			}
-		}
-
-		return null;
+		return punishments.readAll().values().stream().flatMap(Collection::stream)
+				.filter(p -> p.getId() == id).findFirst().orElse(null);
 	}
 }
