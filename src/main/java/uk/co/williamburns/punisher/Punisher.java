@@ -28,7 +28,7 @@ public class Punisher extends JavaPlugin
 		// commands
 		getCommand("kick").setExecutor(new KickCommand(manager));
 		getCommand("ban").setExecutor(new BanCommand(manager));
-		getCommand("ban").setExecutor(new MuteCommand(manager));
+		getCommand("mute").setExecutor(new MuteCommand(manager));
 		getCommand("phistory").setExecutor(new PunishmentHistoryCommand(manager));
 		getCommand("premove").setExecutor(new PunishmentRemoveCommand(manager));
 	}
