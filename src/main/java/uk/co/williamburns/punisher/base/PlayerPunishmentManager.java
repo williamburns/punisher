@@ -3,8 +3,10 @@ package uk.co.williamburns.punisher.base;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 
 import org.bukkit.event.EventHandler;
@@ -22,7 +24,6 @@ import uk.co.williamburns.punisher.data.PunishmentDatabase;
 import uk.co.williamburns.punisher.type.BanType;
 import uk.co.williamburns.punisher.type.KickType;
 import uk.co.williamburns.punisher.type.MuteType;
-import uk.co.williamburns.punisher.util.ReadWriteLockMap;
 
 /**
  * A basic implementation of {@link PunishmentManager} that loads and saves player punishments on
@@ -35,7 +36,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 
 	private final List<PunishmentType> types;
 
-	private final ReadWriteLockMap<UUID, Set<Punishment>> punishments;
+	private final Map<UUID, Set<Punishment>> punishments;
 
 	/**
 	 * Class constructor.
@@ -52,7 +53,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 		this.types.add(new KickType());
 		this.types.add(new MuteType());
 
-		this.punishments = new ReadWriteLockMap<>();
+		this.punishments = new ConcurrentHashMap<>();
 
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
@@ -93,7 +94,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 			return;
 		}
 
-		punishments.read(event.getPlayer().getUniqueId()).stream().filter(Punishment::isActive)
+		punishments.get(event.getPlayer().getUniqueId()).stream().filter(Punishment::isActive)
 				.forEach(p ->
 				{
 					// cancel the chat if punishment type chat even returns false
@@ -110,7 +111,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 		{
 			// load from database; cache locally
 			Set<Punishment> puns = database.loadPunishments(player);
-			punishments.write(map -> map.put(player, puns));
+			punishments.put(player, puns);
 
 			// complete future
 			fut.set(puns);
@@ -122,7 +123,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 	@Override
 	public Set<Punishment> getCachedPunishments(UUID player)
 	{
-		return punishments.read(player);
+		return punishments.get(player);
 	}
 
 	@Override
@@ -164,7 +165,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 			return null;
 		}
 
-		return punishments.readAll().values().stream().flatMap(Collection::stream)
-				.filter(p -> p.getId() == id).findFirst().orElse(null);
+		return punishments.values().stream().flatMap(Collection::stream).filter(p -> p.getId() == id)
+				.findFirst().orElse(null);
 	}
 }
