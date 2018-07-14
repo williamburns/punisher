@@ -98,7 +98,7 @@ public class PlayerPunishmentManager implements PunishmentManager, Listener
 				.forEach(p ->
 				{
 					// cancel the chat if punishment type chat even returns false
-					event.setCancelled(!p.getType().onChat(p));
+					event.setCancelled(event.isCancelled() || !p.getType().onChat(p));
 				});
 	}
 
