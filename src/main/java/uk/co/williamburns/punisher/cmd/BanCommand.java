@@ -48,6 +48,7 @@ public class BanCommand implements CommandExecutor
 		if (!staff.hasPermission("punisher.command.ban"))
 		{
 			sender.sendMessage(MessageUtil.error("You do not have permission to use this command."));
+			return false;
 		}
 
 		if (args.length < 3)
