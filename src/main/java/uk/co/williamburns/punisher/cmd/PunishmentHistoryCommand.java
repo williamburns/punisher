@@ -61,6 +61,7 @@ public class PunishmentHistoryCommand implements CommandExecutor
 		if (targetUuid == null)
 		{
 			sender.sendMessage(MessageUtil.error("That player can't be found online or offline."));
+			return false;
 		}
 
 		String targetName = targetPlayer != null && targetPlayer.isOnline() ? targetPlayer
